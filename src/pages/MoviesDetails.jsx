@@ -1,12 +1,14 @@
-// import { useParams } from "react-router-dom";
-// import { getProductById } from "../fakeAPI";
-
+import { useParams } from "react-router-dom";
+import { getMovieDetails} from "../components/servises/Fetch"
 
 export const MoviesDetails = () => {
-    return (
-        <div>Инфа о фильме</div>
-    )
-}
+    const { movietId } = useParams();
+    console.log( movietId)
+    const  movie = getMovieDetails(movietId);
+  return <div>Now showing product with id - { movietId}</div>;
+};
+
+
 // export const ProductDetails = () => {
 //   const { id } = useParams();
 //   const product = getProductById(id);
