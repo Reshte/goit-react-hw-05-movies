@@ -1,16 +1,27 @@
+import { Wrapper,StyledLink, Header } from './App.styled'
+import { Routes, Route } from "react-router-dom"
+import { Home } from "../pages/Home";
+import { Movies } from "../pages/Movies";
+import {MoviesDetails} from '../pages/MoviesDetails'
+import { NotFound } from "../pages/NotFound";
+
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Wrapper>
+      <Header>
+        <nav>
+        <StyledLink to="/" end>Home</StyledLink>
+        <StyledLink to="/movies">Movies</StyledLink>
+         </nav>
+       </Header>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:id" element={<MoviesDetails />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Wrapper>
   );
 };
