@@ -1,20 +1,30 @@
 import { getPopularMovies } from '../servises/Fetch'
 // import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import {useState, useEffect } from 'react';
 
 
 export const MoviesList = () => {
-    // const [movieName, setmovieName] = useState('')
+    const [movies, setmovies] = useState([])
     // const [movieLink, setMmovieLink] = useState('')
 
-    // async function createMoviesMarkup() {
-    //     const response = await getPopularMovies()
-    //     const movies = response.data.results
-    //     return movies
-    // }
+  useEffect(() => {
+    if (movies.length > 0){return} else{
+      (async function () {
+        try {
+          const movies = await getPopularMovies()
+          console.log(movies)
+          setmovies(movies)          
+        } catch (error) {
+          console.log(error)
+        }
+        })()
+     }
+   
+  },[movies])
+  
+   
     
-    const movies = getPopularMovies().then(data => console.log(data))
-      console.log(movies);
 
     return(
         <ul>
