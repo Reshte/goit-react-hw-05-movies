@@ -1,7 +1,6 @@
 import { getPopularMovies } from '../servises/Fetch'
-// import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 
 export const MoviesList = () => {

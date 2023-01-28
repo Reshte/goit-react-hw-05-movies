@@ -1,7 +1,11 @@
+// import {SearchForm} from '../components/SearchForm/SearchForm'
+
+
 export const Movies = () => {
   return (
     <main>
       <h1>Search movie</h1>
+      {/* <SearchForm/> */}
       </main>
   );
 };
