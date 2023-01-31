@@ -1,18 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMovieDetails } from "../components/servises/Fetch"
+import { Link, Outlet} from "react-router-dom";
 
 export const MoviesDetails = () => {
-  const { movietId } = useParams();
-  console.log(movietId)
-  
+  const { movieId } = useParams();
   const [moviesDetails, setMoviesDetails] = useState([])
       
   useEffect(() => {
-    if(movietId){ (async function () {
+    if(movieId){ (async function () {
         try {
-          const movies = await getMovieDetails(movietId)
-          console.log(movies)
+          const movies = await getMovieDetails(movieId)
           setMoviesDetails(movies)
                 
         } catch (error) {
@@ -21,7 +19,7 @@ export const MoviesDetails = () => {
         }
         })()}
 
-  }, [movietId])
+  }, [movieId])
   const { poster_path, genres, title, overview, vote_average } = moviesDetails
   let genresInfo
   if(genres){ genresInfo = genres.map(genre => { return genre.name }).slice(' ')}
@@ -33,8 +31,19 @@ export const MoviesDetails = () => {
             <h3>Overview</h3>
             <p>{overview}</p>
             <h3>Geners</h3>
-            <p>{genresInfo}</p>
+     <p>{genresInfo}</p>
+     
+      <ul>
+        <li>
+          <Link to="cast" >Cast</Link>
+        </li>
+        <li>
+         <Link to="reviews" >Reviews</Link>
+        </li>
+       </ul>
+      <Outlet />
         </div>
+  
     )
 };
 
