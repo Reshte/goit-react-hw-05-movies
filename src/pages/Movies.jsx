@@ -6,9 +6,9 @@ import { useSearchParams } from "react-router-dom";
 
 export const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([])
-  
+
   const [searchParams, setSearchParams] = useSearchParams();
-  const productName = searchParams.get("name") ?? "";
+  const movieName = searchParams.get("name") ?? "";
     
 
 const updateQueryString = (name) => {
@@ -25,7 +25,7 @@ const handelFormSubmit = (e) => {
 
 async function Request(){
         try {
-          const movies = await getMovies(productName)
+          const movies = await getMovies(movieName)
           setSearchMovies(movies)
                 
         } catch (error) {
@@ -46,7 +46,7 @@ const reset = () => {
              name="searchQuery"
              autoFocus
              placeholder="Search images and photos"
-            value={productName}
+            value={movieName}
           onChange={(e) => updateQueryString(e.target.value.trim())} />
         <button type="submit">Search</button>
       </form>
