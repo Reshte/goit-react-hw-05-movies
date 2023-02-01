@@ -1,18 +1,23 @@
 import { useState } from "react";
 import { MoviesList } from "components/MoviesList/MoviesList";
-import { getMovies} from '../components/servises/Fetch'
+import { getMovies } from '../components/servises/Fetch'
+import { useSearchParams } from "react-router-dom";
 
 
 export const Movies = () => {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [searchMovies , setSearchMovies ] = useState([])
+  const [searchMovies, setSearchMovies] = useState([])
+  
+  const [searchParams, setSearchParams] = useSearchParams();
+  const productName = searchParams.get("name") ?? "";
+    
 
-  const handelInputChange = (e) => {
-            setSearchQuery(e.target.value.trim())
-  }
+const updateQueryString = (name) => {
+    const nextParams = name !== "" ? { name } : {};
+    setSearchParams(nextParams);
+  };
   
 
-    const handelFormSubmit = (e) => {
+const handelFormSubmit = (e) => {
       e.preventDefault()
       Request()
       reset()
@@ -20,7 +25,7 @@ export const Movies = () => {
 
 async function Request(){
         try {
-          const movies = await getMovies(searchQuery)
+          const movies = await getMovies(productName)
           setSearchMovies(movies)
                 
         } catch (error) {
@@ -28,9 +33,10 @@ async function Request(){
         }
         }
   
-    const reset = () => {
-     setSearchQuery('')
- }
+const reset = () => {
+     setSearchParams('')
+  }
+  
   return (
     <main>
       <h1>Search movie</h1>
@@ -40,8 +46,8 @@ async function Request(){
              name="searchQuery"
              autoFocus
              placeholder="Search images and photos"
-            value={searchQuery}
-          onChange={handelInputChange} />
+            value={productName}
+          onChange={(e) => updateQueryString(e.target.value.trim())} />
         <button type="submit">Search</button>
       </form>
       

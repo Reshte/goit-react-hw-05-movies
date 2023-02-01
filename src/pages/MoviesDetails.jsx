@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMovieDetails } from "../components/servises/Fetch"
 import { Link, Outlet} from "react-router-dom";
@@ -6,7 +6,8 @@ import { Link, Outlet} from "react-router-dom";
 export const MoviesDetails = () => {
   const { movieId } = useParams();
   const [moviesDetails, setMoviesDetails] = useState([])
-      
+   const navigate = useNavigate()
+    
   useEffect(() => {
     if(movieId){ (async function () {
         try {
@@ -15,16 +16,22 @@ export const MoviesDetails = () => {
                 
         } catch (error) {
           console.log(error)
-          console.log('бедося у тебя')
         }
         })()}
 
   }, [movieId])
+ 
+  const comeBack = () => {
+     navigate("/movies", { replace: true });
+  }
+
+
   const { poster_path, genres, title, overview, vote_average } = moviesDetails
   let genresInfo
   if(genres){ genresInfo = genres.map(genre => { return genre.name }).slice(' ')}
- return (
-          <div>
+  return (
+      <div>
+       <button type="button" onClick={comeBack}>← Go back</button>
             <img src={`http://image.tmdb.org/t/p/w400/${poster_path}`} alt="" />
             <h2>{title}</h2>
             <p>User score: {vote_average}</p>
