@@ -14,7 +14,7 @@ export function Reviews() {
           setReviews(reviews)
         } catch (error) {
           console.log(error)
-            console.log(",kf,kf")
+          
              }
         })()               
     },[movieId])
