@@ -6,8 +6,6 @@ import { Link, Outlet} from "react-router-dom";
 export const MoviesDetails = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? "/movies";
-
-  console.log("ditails", location)
  
   const { movieId } = useParams();
   const [moviesDetails, setMoviesDetails] = useState([])

@@ -1,41 +1,36 @@
-import { useState } from "react";
+import { useState,  useEffect  } from "react";
 import { MoviesList } from "components/MoviesList/MoviesList";
 import { getMovies } from '../components/servises/Fetch'
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams} from "react-router-dom";
 
 
 export const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([])
-
   const [searchParams, setSearchParams] = useSearchParams();
-  const movieName = searchParams.get("name") ?? "";
-    
+  const query = searchParams.get("query")
 
-const updateQueryString = (name) => {
-    const nextParams = name !== "" ? { name } : {};
-    setSearchParams(nextParams);
-  };
-  
-
-const handelFormSubmit = (e) => {
-    const search = e.currentTarget.elements.searchQuery.value.trim()
-      e.preventDefault()
-      if(search ===''){return}
-      updateQueryString(search)
-      Request(search)
-      // reset()
-  }
-
-async function Request(name){
-        try {
-          const movies = await getMovies(name)
+  useEffect(() => {
+    if (query === '' || query === null) return;
+    (async function () {
+          try {
+          const movies = await getMovies(query)
           setSearchMovies(movies)
-                
         } catch (error) {
           console.log(error)
-        }
-        }
-  
+          }
+        })()               
+    
+  }, [query]);
+
+
+  const handelFormSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    console.log(form.elements.query.value)
+    setSearchParams(query !== '' ? { query: form.elements.query.value } : {})
+     form.reset();
+  };
+
   
   return (
     <main>
@@ -43,14 +38,13 @@ async function Request(name){
       <form onSubmit={handelFormSubmit}>
             <input type="text"
              autoComplete="off"
-             name="searchQuery"
+             name="query"
              autoFocus
-            //  value={movieName}
-          />
+            />
         <button type="submit">Search</button>
       </form>
       
-      <MoviesList movies={searchMovies} url='' />
+      <MoviesList movies={searchMovies} url='' query={`/movies?query=${query}`} />
       </main>
   );
 };
