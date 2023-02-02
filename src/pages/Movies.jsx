@@ -22,13 +22,13 @@ const handelFormSubmit = (e) => {
       e.preventDefault()
       if(search ===''){return}
       updateQueryString(search)
-      Request()
+      Request(search)
       // reset()
   }
 
-async function Request(){
+async function Request(name){
         try {
-          const movies = await getMovies(movieName)
+          const movies = await getMovies(name)
           setSearchMovies(movies)
                 
         } catch (error) {
