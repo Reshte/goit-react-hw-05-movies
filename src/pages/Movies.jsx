@@ -18,9 +18,12 @@ const updateQueryString = (name) => {
   
 
 const handelFormSubmit = (e) => {
+    const search = e.currentTarget.elements.searchQuery.value.trim()
       e.preventDefault()
+      if(search ===''){return}
+      updateQueryString(search)
       Request()
-      reset()
+      // reset()
   }
 
 async function Request(){
@@ -33,9 +36,6 @@ async function Request(){
         }
         }
   
-const reset = () => {
-     setSearchParams('')
-  }
   
   return (
     <main>
@@ -45,9 +45,8 @@ const reset = () => {
              autoComplete="off"
              name="searchQuery"
              autoFocus
-             placeholder="Search images and photos"
-            value={movieName}
-          onChange={(e) => updateQueryString(e.target.value.trim())} />
+            //  value={movieName}
+          />
         <button type="submit">Search</button>
       </form>
       
