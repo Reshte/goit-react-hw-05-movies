@@ -28,7 +28,7 @@ export const MoviesDetails = () => {
 
   const { poster_path, genres, title, overview, vote_average } = moviesDetails
   let genresInfo
-  if(genres){ genresInfo = genres.map(genre => { return genre.name }).slice(' ')}
+  if(genres){ genresInfo = genres.map(genre => { return genre.name }).join(" ")}
   return (
       <div>
        <button type="button" onClick={comeBack}>← Go back</button>
