@@ -10,7 +10,6 @@ export function Reviews() {
         (async function () {
         try {
           const reviews = await getMovieReviews(movieId)
-          console.log(reviews)
           setReviews(reviews)
         } catch (error) {
           console.log(error)
@@ -18,15 +17,20 @@ export function Reviews() {
              }
         })()               
     },[movieId])
-
+console.log(reviews)
     return (
         <div>
             <ul>
-                {reviews.map(({author,id,content})=>{return  <li key={id}>
+
+                {reviews.length > 0 ? (reviews.map(({author,id,content})=>{return  <li key={id}>
                         <p>{author}</p>
                         <p>{content}</p>
                     </li>                   
-                })}
+                })
+      ) : (
+        <p>We don`t have any reviews for this movie</p>
+      )}
+                
             </ul>
         </div>
     )

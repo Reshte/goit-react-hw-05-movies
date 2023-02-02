@@ -1,4 +1,3 @@
-
 import { MoviesList } from '../components/MoviesList/MoviesList'
 import { useState, useEffect } from 'react';
 import { getPopularMovies } from '../components/servises/Fetch'
