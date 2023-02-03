@@ -17,7 +17,7 @@ export const Reviews = () => {
              }
         })()               
     },[movieId])
-console.log(reviews)
+
     return (
         <div>
             <ul>
