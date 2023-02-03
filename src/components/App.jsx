@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route} from "react-router-dom"
 import { Layout } from 'components/Layout/Layout';
 // import { lazy } from "react";
 import { Home } from '../pages/Home'
@@ -16,7 +16,7 @@ import { Cast } from './Cast/Cast'
 
 
 export const App = () => {
-  return (
+  return (    
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element={<Home />} />
