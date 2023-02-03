@@ -24,7 +24,6 @@ export const Container = styled.div`
 export const Poster = styled.img`
   display: block;
   width: 30vw;
-  hight: 100%;
   padding: 2px;
  
 `
