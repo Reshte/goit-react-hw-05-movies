@@ -1,8 +1,11 @@
 import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMovieDetails } from "../components/servises/Fetch"
-import { Link, Outlet } from "react-router-dom";
+import {  Outlet, Link } from "react-router-dom";
 import { Suspense } from "react";
+import { Loader } from "components/Loader/Loader";
+import { Button, Container, Poster, WrapperInfo} from './MoviesDetails.styled'
+
 
 export const MoviesDetails = () => {
   const location = useLocation();
@@ -10,36 +13,45 @@ export const MoviesDetails = () => {
  
   const { movieId } = useParams();
   const [moviesDetails, setMoviesDetails] = useState([])
+  const [loading, setLoading] = useState(false)
       
   useEffect(() => {
-    if(movieId){ (async function () {
+    if (movieId) {
+      (async function () {
+      setLoading(true)
         try {
           const movies = await getMovieDetails(movieId)
           setMoviesDetails(movies)
         } catch (error) {
           console.log(error)
         }
+        setLoading(false)
         })()}
 
   }, [movieId])
  
-  console.log(moviesDetails)
   const { poster_path, genres, title, overview, vote_average, release_date } = moviesDetails
   let genresInfo
   let releasedate
   if (genres) { genresInfo = genres.map(genre => { return genre.name }).join(" ") }
-  if(release_date){releasedate = release_date.slice(0,4)}
+  if (release_date){releasedate = release_date.slice(0,4)}
   return (
-      <div>
-
-      <Link to={backLinkHref}>← Go back</Link>
-            <img src={`http://image.tmdb.org/t/p/w400/${poster_path}`} alt="" />
-      <h2>{title}  ({releasedate})</h2>
+    <div>
+      { loading && <Loader />}
+      {!loading && <div>
+      <Button to={backLinkHref}>← Go back</Button>
+      
+        <Container>
+           <Poster src={`http://image.tmdb.org/t/p/w400/${poster_path}`} alt="poster" />
+          <WrapperInfo>
+             <h2>{title}  ({releasedate})</h2>
             <p>User score: {Math.round(vote_average*10)}%</p>
             <h3>Overview</h3>
             <p>{overview}</p>
             <h3>Geners</h3>
             <p>{genresInfo}</p>
+           </WrapperInfo>
+        </Container>
      
       <ul>
         <li>
@@ -49,10 +61,11 @@ export const MoviesDetails = () => {
          <Link to="reviews" >Reviews</Link>
         </li>
        </ul>
-      <Suspense fallback={<div>Loading ...</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-        </div>
+    </div>}
+    </div>
   
     )
 };

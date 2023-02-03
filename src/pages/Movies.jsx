@@ -2,21 +2,30 @@ import { useState,  useEffect  } from "react";
 import { MoviesList } from "components/MoviesList/MoviesList";
 import { getMovies } from '../components/servises/Fetch'
 import { useSearchParams} from "react-router-dom";
-
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([])
   const [searchParams, setSearchParams] = useSearchParams();
+  // const [status, setStatus] = useState('')
   const query = searchParams.get("query")
 
   useEffect(() => {
     if (query === '' || query === null) return;
+
     (async function () {
           try {
-          const movies = await getMovies(query)
-          setSearchMovies(movies)
+            const movies = await getMovies(query)
+            if (movies.length > 0) { setSearchMovies(movies) } else {
+            setSearchMovies([])
+            toast('Sorry, there are no movies matching your search query. Please try again.')
+            return
+       }
+            
+              
         } catch (error) {
-          console.log(error)
+            console.log(error)
+          
           }
         })()               
     
@@ -43,7 +52,7 @@ export const Movies = () => {
             />
         <button type="submit">Search</button>
       </form>
-      
+      <Toaster  position="top-right" reverseOrder={false} />
       <MoviesList movies={searchMovies} url='' query={`/movies?query=${query}`} />
       </main>
   );

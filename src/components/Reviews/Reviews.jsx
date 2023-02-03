@@ -2,7 +2,7 @@
  import { getMovieReviews } from "../servises/Fetch"
  import { useParams } from "react-router-dom";
 
-export function Reviews() {   
+export const Reviews = () => {   
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([])
 

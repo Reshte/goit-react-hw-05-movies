@@ -1,9 +1,10 @@
 import { getMovieCredits } from "../servises/Fetch"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
+import { Wrapper, ActorFoto } from "./Cast.styled";
 
 
-export function Cast() {
+export const Cast =()=>{
 const { movieId } = useParams();
 const [actors, setActors] = useState([])
 
@@ -21,18 +22,17 @@ const [actors, setActors] = useState([])
         }
     },[movieId])
 
-    console.log(actors)
     return (
-        <div>
+        <Wrapper>
             <ul>
           {actors.map(({name,character,profile_path,id}) =>{ return(
             <li key ={id}>
-                <img src={`http://image.tmdb.org/t/p/w200/${profile_path}`} alt="" />
+                <ActorFoto src={`http://image.tmdb.org/t/p/w200/${profile_path}`} alt="" />
                 <p>{name}</p>
                 <p>{character}</p>
             </li>
           )})}
             </ul>
-        </div>
+        </Wrapper>
     )
 }

@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { getPopularMovies } from '../components/servises/Fetch'
 
 export const Home = () => {
-
-    const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([])
    
   useEffect(() => {
     if (movies.length > 0){return} else{
@@ -17,8 +16,7 @@ export const Home = () => {
         }
         })()
      }
-   
-  }, [movies])
+     }, [movies])
 
   return (
     <main>
