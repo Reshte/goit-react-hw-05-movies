@@ -20,7 +20,7 @@ export const Home = () => {
 
   return (
     <main>
-      <h1>Tredding today</h1>
+      <h1 style={{ textAlign: 'center' }}>Tredding today</h1>
       <MoviesList movies={movies} url="movies/" query={'/'} />
     </main>
   );

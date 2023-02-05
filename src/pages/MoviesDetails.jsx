@@ -1,10 +1,10 @@
 import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMovieDetails } from "../components/servises/Fetch"
-import {  Outlet, Link } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import { Suspense } from "react";
 import { Loader } from "components/Loader/Loader";
-import { Button, Container, Poster, WrapperInfo} from './MoviesDetails.styled'
+import { Link, Container, Poster,PosterWrapper, WrapperInfo} from './MoviesDetails.styled'
 
 
 export const MoviesDetails = () => {
@@ -39,10 +39,13 @@ export const MoviesDetails = () => {
     <div>
       { loading && <Loader />}
       {!loading && <div>
-      <Button to={backLinkHref}>← Go back</Button>
+      <Link to={backLinkHref}>← Go back</Link>
       
         <Container>
-           <Poster src={`http://image.tmdb.org/t/p/w400/${poster_path}`} alt="poster" />
+          <PosterWrapper>
+            <Poster src={`http://image.tmdb.org/t/p/w400/${poster_path}`} alt="poster" />
+          </PosterWrapper>
+           
           <WrapperInfo>
              <h2>{title}  ({releasedate})</h2>
             <p>User score: {Math.round(vote_average*10)}%</p>
@@ -53,7 +56,7 @@ export const MoviesDetails = () => {
            </WrapperInfo>
         </Container>
      
-      <ul>
+      <ul style={{fontSize: '20px', listStyle: 'none'}}>
         <li>
           <Link to="cast" >Cast</Link>
         </li>
@@ -61,7 +64,7 @@ export const MoviesDetails = () => {
          <Link to="reviews" >Reviews</Link>
         </li>
        </ul>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </div>}

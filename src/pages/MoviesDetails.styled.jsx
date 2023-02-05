@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const Button = styled(NavLink)`
+export const Link = styled(NavLink)`
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -19,15 +19,17 @@ export const Container = styled.div`
   display: flex;
   padding-bottom: 5px;
   margin-bottom: 15px;
-  border-bottom: 1px solid #ccc;
+ box-shadow: 0 20px 16px -16px rgba(0,0,0,0.6);
+ 
+ `
+ export const PosterWrapper = styled.div`
+  width: 30vw;
+  padding: 30px;
+   
 `
 export const Poster = styled.img`
   display: block;
-  height: 500px;
-  width: 30vw;
-  padding: 2px;
- 
-`
+    `
 export const WrapperInfo = styled.div`
 padding: 50px;
 font-size: 16px;

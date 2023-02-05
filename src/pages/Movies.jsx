@@ -43,8 +43,8 @@ export const Movies = () => {
   
   return (
     <main>
-      <h1>Search movie</h1>
-      <form onSubmit={handelFormSubmit}>
+      <h1 style={{ textAlign: 'center' }}>Search movie</h1>
+      <form  style={{ textAlign: 'center' }} onSubmit={handelFormSubmit}>
             <input type="text"
              autoComplete="off"
              name="query"
