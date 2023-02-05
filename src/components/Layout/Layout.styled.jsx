@@ -6,7 +6,7 @@ export const Container = styled.div`
 justify-content: center;
 align-items: center; */
 padding: 30px 100px;
-font-size: 40;
+font-size: 50;
 color: #010101;
 `
 export const StyledLink = styled(NavLink)`

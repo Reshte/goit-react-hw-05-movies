@@ -15,3 +15,4 @@ export const MoviesList = ({ movies, url, query }) => {
     )
 }
 
+export default MoviesList;

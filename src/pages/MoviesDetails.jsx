@@ -70,4 +70,4 @@ export const MoviesDetails = () => {
     )
 };
 
-
+export default MoviesDetails;

@@ -23,6 +23,7 @@ export const Container = styled.div`
 `
 export const Poster = styled.img`
   display: block;
+  height: 500px;
   width: 30vw;
   padding: 2px;
  

@@ -36,3 +36,5 @@ const [actors, setActors] = useState([])
         </Wrapper>
     )
 }
+
+export default Cast;
