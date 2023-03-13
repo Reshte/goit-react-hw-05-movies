@@ -26,21 +26,24 @@ export const Link = styled(NavLink)`
 
 export const Poster = styled.img`
     /* margin-bottom: 10px; */
-
-    width: 280px;
-    height: 402px;
-    overflow:overlay;
-    border-radius: 5px;
+ width: 280px;
+ height: 402px;
+ overflow:overlay;
+border-radius: 5px;
 `
 
 export const MovieName = styled.h2`
-   margin-bottom: 4px;
-font-size: 20px;
+margin-bottom: 4px;
+font-size: 18px;
 line-height: 1.17;
 width:170px;
+height: 60px;
 white-space:pre-wrap;
 text-align: center;
 color:black;
 margin: 0 auto;
 padding: 10px 25px;
+display: flex;
+align-items: center;
+justify-content: center;
 `

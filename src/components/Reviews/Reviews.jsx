@@ -1,7 +1,7 @@
  import { useEffect, useState } from "react"
  import { getMovieReviews } from "../servises/Fetch"
  import { useParams } from "react-router-dom";
-import {Loader} from 'components/Loader/Loader'
+import { Loader } from 'components/Loader/Loader'
 export const Reviews = () => {   
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([])

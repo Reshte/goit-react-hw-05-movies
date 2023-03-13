@@ -3,6 +3,7 @@ import { MoviesList } from "components/MoviesList/MoviesList";
 import { getMovies } from '../components/servises/Fetch'
 import { useSearchParams} from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import TextField from '@mui/material/TextField';
 
 export const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([])
@@ -45,11 +46,17 @@ export const Movies = () => {
     <main>
       <h1 style={{ textAlign: 'center' }}>Search movie</h1>
       <form  style={{ textAlign: 'center' }} onSubmit={handelFormSubmit}>
-            <input type="text"
-             autoComplete="off"
-             name="query"
-             autoFocus
-            />
+         <TextField
+          id="outlined-textarea"
+          type="text"
+          sx={{ m: 1, width: '40ch' }}
+          autoComplete="off"
+            color="success"
+          name="query"
+          autoFocus
+          label="Search"
+          placeholder="Movie title"
+          />     
         <button type="submit">Search</button>
       </form>
       <Toaster  position="top-right" reverseOrder={false} />
