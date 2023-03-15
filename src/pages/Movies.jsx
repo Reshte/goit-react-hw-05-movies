@@ -57,8 +57,7 @@ export const Movies = () => {
           label="Search"
           placeholder="Movie title"
           />     
-        <button type="submit">Search</button>
-      </form>
+          </form>
       <Toaster  position="top-right" reverseOrder={false} />
       <MoviesList movies={searchMovies} url='' query={`/movies?query=${query}`} />
       </main>

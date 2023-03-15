@@ -32,7 +32,7 @@ const [actors, setActors] = useState([])
        <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 5, md: 5 }}>
             {actors.map(({ name, character, profile_path, id }) => {
-            return ( <Grid xs={6}>
+            return ( <Grid xs={2}>
           <Card sx={{ MaxWidth: 200 }} key ={id}>
         <CardActionArea>
         <CardMedia

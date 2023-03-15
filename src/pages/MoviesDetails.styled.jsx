@@ -10,8 +10,14 @@ export const Link = styled(NavLink)`
   color: black;
   text-decoration: none;
   font-weight: 500;
+  
   :hover {
     color: greenyellow;
+  }
+
+  &.active {
+    color: white;
+    background-color: greenyellow;
   }
 `;
 
@@ -19,9 +25,10 @@ export const Container = styled.div`
   display: flex;
   padding-bottom: 5px;
   margin-bottom: 15px;
- box-shadow: 0 20px 16px -16px rgba(0,0,0,0.6);
- 
- `
+  justify-content: space-evenly;
+  background-color: white;
+  box-shadow: 0 20px 16px -16px rgba(0,0,0,0.6);
+  `
  export const PosterWrapper = styled.div`
   width: 30vw;
   padding: 30px;

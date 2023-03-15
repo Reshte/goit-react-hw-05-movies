@@ -56,14 +56,14 @@ export const MoviesDetails = () => {
            </WrapperInfo>
         </Container>
      
-      <ul style={{fontSize: '20px', listStyle: 'none'}}>
+      <Container style={{fontSize: '20px', listStyle: 'none'}}>
         <li>
           <Link to="cast" >Cast</Link>
         </li>
         <li>
          <Link to="reviews" >Reviews</Link>
         </li>
-       </ul>
+       </Container>
         <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

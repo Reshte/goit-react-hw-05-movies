@@ -2,6 +2,8 @@
  import { getMovieReviews } from "../servises/Fetch"
  import { useParams } from "react-router-dom";
 import { Loader } from 'components/Loader/Loader'
+import Paper from '@mui/material/Paper'; 
+ 
 export const Reviews = () => {   
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([])
@@ -26,11 +28,12 @@ export const Reviews = () => {
         <div>
             {loading && <Loader />}
             {error && <p>We don`t have any reviews for this movie</p>}
-             {! error &&  <ul>         
-               { reviews.map(({author,id,content})=>{return <li key={id}>
+             {! error &&  <ul style={{display: 'contents'}}>         
+                {reviews.map(({ author, id, content }) => {
+                    return <Paper style={{padding: '20px', marginBottom: '20px'} } elevation={3} key={id}>
                 <p>{author}</p>
                 <p>{content}</p>
-                </li>                   
+                </Paper>                   
                 })
                  }
             </ul>}
